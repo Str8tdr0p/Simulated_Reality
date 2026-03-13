@@ -47,7 +47,7 @@ Three independent interception layers have been confirmed:
 
 ##### **3.1. Temporal Correlation: MCT vs. Unix Epoch**
 
-A precise offset of **1,772,231,540.7099 seconds** is established between Mach Continuous Time (Uptime) and the Unix Epoch.
+A precise offset of **1,772,231,540.7099 ms** is established between Mach Continuous Time (Uptime) and the Unix Epoch.
 
 **Clock Synchronization Alignment Table:**
 | Event | TraceV3 (MCT) | Powerlog (Unix) | Human Time (GMT/UTC) |
