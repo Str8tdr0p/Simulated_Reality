@@ -3,7 +3,7 @@
 **Forensic Report of a "Second Reality" Execution Divergence**
 
 **Report Date:** March 13, 2026
-**Device Build:** iOS 16.3.1 — `23D127` (Model: `D74AP`)
+
 **Classification:** Technical Forensic Analysis
 
 ---
