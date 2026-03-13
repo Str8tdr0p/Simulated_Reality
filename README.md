@@ -1,5 +1,5 @@
 # Simulated Reality
-**Forensic Repor of a "Second Reality" Execution Divergence**
+**Forensic Report of a "Second Reality" Execution Divergence**
 
 **Report Date:** March 13, 2026
 
