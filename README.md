@@ -76,7 +76,7 @@ The `PLSQL` data reveals the contradiction between active exfiltration and repor
 | **1772231547.76** | `Skywalk` Nexus Egress | **-771 mA** | **SIMULATED IDLE** |
 | **Native State** | `pdp_ip0` Active | **-650 mA** | **NATIVE ACTIVE** |
 
-**Observation:** While the trace documents high-throughput network activity via the `bv41` nexus, the Powerlog records a baseline "Idle" amperage. This confirms the node is intercepting energy reports to "whitewash" the exfiltration.
+**Observation:** The return-path data is simulated by an 80 00 02 policy injection that forces an authorized success signal (auth_value=2) regardless of actual hardware state. This is synchronized with a -771mA idle report in the Powerlog, which programmatically whitewashes the active exfiltration’s energy footprint from the user’s view.
 
 ##### **3.4. Temporal Divergence: The "Exit Pulse"**
 
@@ -89,8 +89,7 @@ The simulation flip occurs exactly **240ms** before total log termination. In DF
 * **Egress Node IP:** `166.216.154.41`
 * **Infrastructure:** **AS20057** (AT&T Mobility LLC).
 * **Tactical Implementation:** **Intra-Subnet Pivot**. The node is logically adjacent to the legitimate bearer (**166.216.154.45**) to bypass signaling-anomaly filters.
-* **Shadow Resolver:** The **`0x79047fe2`** handle maps to a shadow resolver state that forces all identity and DNS queries through the malicious AT&T node.
-
+* **Shadow Resolver:** The hijack redirects raw ingestion to the 166.216.154.41 AT&T egress node (mobile-166-216-154-41.mycingular.net) via the **0x79047fe2** shadow handle. This intra-subnet pivot ensures that the redirected traffic remains within the carrier’s signaling plane, bypassing standard on-device proxy detection.
 ---
 
 #### **5. Master Forensic Script: Execution Divergence Auditor**
@@ -145,4 +144,4 @@ if __name__ == "__main__":
 
 #### **6. Conclusion**
 
-The forensic evidence confirms the device is operating within a **Second Reality**. The simulation node intercepts physical inputs, grants itself root privileges via a TCC override algorithm, and exfiltrates data to **166.216.154.41** while using a loop-back mechanism to hide its energy and network footprint. This redirection persists across DFU restores, indicating a compromise at the firmware or recovery-image level. The presence of the **Exit Pulse** confirms the node is designed to terminate monitoring activity immediately following a reality-flip event.
+The forensic evidence confirms the device is operating within a **Second Reality**. The simulation node intercepts physical inputs, grants itself root privileges via a TCC override algorithm, and exfiltrates data to **166.216.154.41** while using a loop-back mechanism to hide its energy and network footprint. The presence of the **Exit Pulse** confirms the node is designed to terminate monitoring activity immediately following a reality-flip event. This audit shows a closed-loop simulation: ingestion is hijacked via the 0x79047fe2 handle to the AT&T .41 node, while the system is fed a simulated 'Success' state and whitewashed energy telemetry to maintain the illusion of native device behavior. This redirection persists across DFU restores, indicating a compromise at the firmware or recovery-image level.
