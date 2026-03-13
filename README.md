@@ -2,7 +2,7 @@
 
 **Report Date:** March 13, 2026
 
-**Subject:** Detection of Silicon-Level Simulation Node and Logical Redirection
+**Detection of Silicon-Level Simulation Node and Logical Redirection**
 
 **Classification:** Technical Forensic Analysis
 
